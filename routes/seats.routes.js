@@ -35,4 +35,4 @@ router.route('/seats/:id').delete((req, res) => {
 });
 
 
-module.exports = router; 
+module.exports = router;

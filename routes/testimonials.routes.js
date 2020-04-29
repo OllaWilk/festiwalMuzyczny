@@ -24,7 +24,6 @@ router.route('/testimonials').post((req, res) => {
     };
     db.testimonials.push(newData);
     res.json({message: 'OK'});
-    res.json({ message: 'OK' });
 });
 
 router.route('/testimonials/:id').put((req, res) => {

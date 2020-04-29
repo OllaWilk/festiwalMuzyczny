@@ -39,13 +39,13 @@ class OrderTicketForm extends React.Component {
 
   submitForm = async (e) => {
     const { order } = this.state;
-    const { addSeat, loadSeats } = this.props;
+    const { addSeat} = this.props;
 
     e.preventDefault();
 
     if(order.client && order.email && order.day && order.seat) {
       await addSeat(order);
-      this.setState({ 
+      this.setState({
         order: {
           client: '',
           email: '',
@@ -54,7 +54,6 @@ class OrderTicketForm extends React.Component {
         },
         isError: false,
       });
-      loadSeats();
     } else {
       this.setState({ isError: true });
     }
@@ -99,9 +98,9 @@ class OrderTicketForm extends React.Component {
             <Button color="primary" className="mt-3">Submit</Button>
           </Col>
           <Col xs="12" md="6">
-            <SeatChooser 
+            <SeatChooser
               chosenDay={order.day}
-              chosenSeat={order.seat} 
+              chosenSeat={order.seat}
               updateSeat={updateSeat} />
           </Col>
         </Row>

@@ -6,7 +6,9 @@
     "start": "nodemon server.js",
     "build": "cd client && npm install && npm run build",
     "test": "mocha \"./test/**/*.test.js\"",
-    "test:watch": "onchange \"./**/*.js\" -i -k -- npm run test"
+    "test:watch": "onchange \"./**/*.js\" -i -k -- npm run test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "OllaWilk",
   "license": "MIT",
@@ -22,8 +24,9 @@
     "mongoose": "^5.9.12",
     "nodemon": "^2.0.3",
     "onchange": "^7.0.2",
-    "snyk": "^1.235.0",
+    "snyk": "^1.320.2",
     "socket.io": "^2.2.0",
     "uuid": "^7.0.3"
-  }
+  },
+  "snyk": true
 }

@@ -46,7 +46,6 @@ exports.getPost = async (req, res) => {
 };
 
 
-
 exports.getPut = async (req, res) => {
 
     const { day, seat, client, email } = req.body;

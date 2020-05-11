@@ -33,7 +33,6 @@ app.use((req, res) => {
 });
 
 
-
 mongoose.connect(`mongodb+srv://gosc:${process.env.dbpass}@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 

@@ -4,16 +4,23 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build",
+    "test": "mocha \"./test/**/*.test.js\"",
+    "test:watch": "onchange \"./**/*.js\" -i -k -- npm run test"
   },
   "author": "OllaWilk",
   "license": "MIT",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mocha": "^7.1.2",
     "mongodb": "^3.5.7",
+    "mongodb-memory-server": "^6.6.0",
     "mongoose": "^5.9.12",
     "nodemon": "^2.0.3",
+    "onchange": "^7.0.2",
     "socket.io": "^2.2.0",
     "uuid": "^7.0.3"
   }

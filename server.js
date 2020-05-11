@@ -34,7 +34,7 @@ app.use((req, res) => {
 
 
 
-mongoose.connect('mongodb+srv://gosc:helloGosc1@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://gosc:' + env.dbpass + '@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {

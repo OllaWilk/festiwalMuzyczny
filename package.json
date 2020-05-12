@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.1",
     "mocha": "^7.1.2",
-    "mongo-sanitize": "^1.0.1",
+    "mongo-sanitize": "^1.1.0",
     "mongodb": "^3.5.7",
     "mongodb-memory-server": "^6.6.0",
     "mongoose": "^5.9.12",

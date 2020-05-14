@@ -25,8 +25,8 @@ describe('GET /api/concerts', () => {
 
             const testConcertTwo = new Concert({
                 _id: '5d9f1140f10a81216cf44',
-                performer: 'Ola Wilk',
-                genre: 'POP',
+                performer: 'Johny Bravo',
+                genre: 'ROCK',
                 price: 20,
                 day: 2,
                 image: '/img/uploads/1fsd324fsdg.jpg'
@@ -42,18 +42,18 @@ describe('GET /api/concerts', () => {
         try {
           await Concert.deleteMany();
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
       });
 
     it('/ should return all concerts', async () => {
 
         try {
-            const res = await request(server).get('/api/concerts');
+            const res = await request(server).get('/api/concerts'); //odwołuję się do serwera i łączę się z endpointem/api/concerts
 
-            expect(res.status).to.be.equal(200);
-            expect(res.body).to.be.an('array');
-            expect(res.body.length).to.be.equal(2);
+            expect(res.status).to.be.equal(200); //mam otrzymać od serwera kod sukcesu
+            expect(res.body).to.be.an('array'); //sprawdzam czy jest tablica
+            expect(res.body.length).to.be.equal(2); //tablica zawiera 2 elementy
         } catch (err) {
             console.log(err);
         }

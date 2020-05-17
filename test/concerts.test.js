@@ -9,101 +9,63 @@ const expect = chai.expect;
 const request = chai.request;
 
 describe('GET /concerts', () => {
-
     before(async () => {
+        const testConcertOne = new Concert({
+          _id: '5d9f1140f10a81216cfd5555',
+          performer: 'TEST Ola Wilk',
+          genre: 'POP',
+          price: 40,
+          day: 2,
+          image: '/img/uploads/1fsd324fsdg.jpg',
+        });
+        await testConcertOne.save();
 
-        try {
-            const testConcertOne = new Concert({
-                _id: '5d9f1140f10a81216cf44',
-                performer: 'TEST Ola Wilk',
-                genre: 'POP',
-                price: 40,
-                day: 2,
-                image: '/img/uploads/1fsd324fsdg.jpg'
-            });
-            await testConcertOne.save();
+        const testConcertTwo = new Concert({
+          _id: '5d9f1140f10a81216cfd1111',
+          performer: 'TEST Johny Bravo',
+          genre: 'ROCK',
+          price: 20,
+          day: 2,
+        });
 
-            const testConcertTwo = new Concert({
-                _id: '5d9f1140f10a81216cf44',
-                performer: 'TEST Johny Bravo',
-                genre: 'ROCK',
-                price: 20,
-                day: 2,
-                image: '/img/uploads/1fsd324fsdg.jpg'
-            });
-            await testConcertTwo.save();
-        } catch (err) {
-          console.log(err);
-        }
+        await testConcertTwo.save();
     });
 
-      after(async () => {
-
-        try {
-          await Concert.deleteMany({ performer: /^TEST /});
-        } catch (err) {
-            console.log(err);
-        }
-      });
-
-    it('/ should return all concerts', async () => {
-
-        try {
-            const res = await request(server).get('/concerts'); //odwołuję się do serwera i łączę się z endpointem/api/concerts
-
-            expect(res.status).to.be.equal(200); //mam otrzymać od serwera kod sukcesu
-            expect(res.body).to.be.an('object'); //sprawdzam czy jest tablica
-            expect(res.body.length).to.be.equal(2); //tablica zawiera 2 elementy
-        } catch (err) {
-            console.log(err);
-        }
+    it('should return all concerts', async () => {
+        const res = await request(server).get('/api/concerts');
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.an('array');
+        expect(res.body.length).to.be.equal(2);
     });
 
     it('/:id should return concert by :id', async () => {
-
-        try {
-          const res = await request(server).get('/concerts/5d9f1140f10a81216cf44');
-
-          expect(res.status).to.be.equal(200);
-          expect(res.body).to.be.an('object');
-          //expect(res.body).to.not.be.null;
-          expect(res.body.length).to.be.not.be.null;
-        } catch (err) {
-            console.log(err);
-        }
+        const res = await request(server).get('/api/concerts/5d9f1140f10a81216cfd5555');
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.length).to.be.not.be.null;
     });
 
     it('/ should return performer by name', async () => {
+        const res = await request(server).get('/api/concerts/performer/TEST Ola Wilk');
 
-        try {
-          const res = await request(server).get('/concerts/performer/Ola Wilk');
-
-          expect(res.status).to.be.equal(200);
-          expect(res.body).to.be.an('array');
-          //expect(res.body).to.be.equal(1);
-          expect(res.body.length).to.be.equal(1);
-        } catch (err) {
-            console.log(err);
-        }
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.an('array');
+        expect(res.body.length).to.be.equal(1);
     });
 
     it('/ should return genre by name', async () => {
+        const res = await request(server).get('/api/concerts/genre/ROCK');
 
-        try {
-          const res = await request(server).get('/concerts/genre/ROCK');
-
-          expect(res.status).to.be.equal(200);
-          expect(res.body).to.be.an('array');
-          expect(res.body).to.not.be.equal(1);
-        } catch (err) {
-            console.log(err);
-        }
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.an('array');
+        expect(res.body.length).to.be.equal(1);
     });
+
 
     it('should return concerts by day', async () => {
 
         try {
-            const res = await request(server).get('/concerts/day/2');
+            const res = await request(server).get('/api/concerts/day/2');
 
             expect(res.status).to.be.equal(200);
             expect(res.body).to.be.an('array');
@@ -113,5 +75,7 @@ describe('GET /concerts', () => {
             console.log(err);
         }
     });
-
+    after(async () => {
+        await Concert.deleteMany({ performer: /^TEST /});
+    });
 });

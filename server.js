@@ -35,8 +35,12 @@ app.use((req, res) => {
     res.status(404).json({ message: 'Not found...' });
 });
 
+/*local DB*/
+mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-mongoose.connect(`mongodb+srv://gosc:${process.env.dbpass}@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+/*mongo Atlas DB*/
+//mongoose.connect('mongodb+srv://gosc:hellogosc1@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(`mongodb+srv://gosc:${process.env.dbpass}@cluster0-7kjhs.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {

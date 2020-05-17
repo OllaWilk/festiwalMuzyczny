@@ -46,7 +46,7 @@ describe('GET /concerts', () => {
         }
       });
 
-    xit('/ should return all concerts', async () => {
+    it('/ should return all concerts', async () => {
 
         try {
             const res = await request(server).get('/concerts'); //odwołuję się do serwera i łączę się z endpointem/api/concerts
@@ -73,7 +73,7 @@ describe('GET /concerts', () => {
         }
     });
 
-    xit('/ should return performer by name', async () => {
+    it('/ should return performer by name', async () => {
 
         try {
           const res = await request(server).get('/concerts/performer/Ola Wilk');
@@ -87,7 +87,7 @@ describe('GET /concerts', () => {
         }
     });
 
-    xit('/ should return genre by name', async () => {
+    it('/ should return genre by name', async () => {
 
         try {
           const res = await request(server).get('/concerts/genre/ROCK');
@@ -100,7 +100,7 @@ describe('GET /concerts', () => {
         }
     });
 
-    xit('should return concerts by day', async () => {
+    it('should return concerts by day', async () => {
 
         try {
             const res = await request(server).get('/concerts/day/2');

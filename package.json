@@ -20,7 +20,7 @@
     "mongo-sanitize": "^1.0.1",
     "mongodb": "^3.5.7",
     "mongodb-memory-server": "^6.6.0",
-    "mongoose": "^5.9.12",
+    "mongoose": "^5.11.7",
     "nodemon": "^2.0.3",
     "onchange": "^7.0.2",
     "snyk": "^1.235.0",
